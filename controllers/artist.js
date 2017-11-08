@@ -117,7 +117,7 @@ function deleteArtist(req, res) {
 									}
 
 								}
-							})
+							});
 						}
 					}
 				});
