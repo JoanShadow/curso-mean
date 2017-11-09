@@ -33,7 +33,7 @@ function getArtists(req, res) {
 	
 	var itemsPerPage = 3;
 
-	Artist.find().sort('name').paginate(page, itemsPerPage, function(err, artists, total) {
+	Artist.find().sort('name').paginate(page, itemsPerPage, (err, artists, total) => {
 		if(err) {
 			res.status(500).send({message: 'Error en la petición'});
 		}else {
@@ -160,7 +160,7 @@ function getImageFile(req, res) {
 	var imageFile = req.params.imageFile;
 	var path_file = './uploads/artists/'+imageFile;
 
-	fs.exists(path_file, function(exists) {
+	fs.exists(path_file, (exists) => {
 		if(exists) {
 			res.sendFile(path.resolve(path_file));
 		}else {

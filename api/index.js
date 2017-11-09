@@ -6,7 +6,7 @@ var port = process.env.PORT || 3030;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/musify', (err, res) => { // connect
+mongoose.connect('mongodb://localhost:27017/musify', (err, res) => {
 	if(err) {
 		throw err;
 	} else {

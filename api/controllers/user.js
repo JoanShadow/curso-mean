@@ -21,7 +21,7 @@ console.log(params);
 
  if(params.password) {
  	// Encriptar contraseña y guardar datos
- 	bcrypt.hash(params.password, null, null, function(err, hash) {
+ 	bcrypt.hash(params.password, null, null, (err, hash) => {
  		user.password = hash;
  		if(user.name != null && user.surname != null && user.email != null) {
  			// Guardar el usuario
@@ -66,7 +66,7 @@ function loginUser(req, res) {
 				res.status(404).send({message: 'El usuario no existe'});
 			}else {
 				// Comprobar la contraseña
-				bcrypt.compare(password, user.password, function(err, check) {
+				bcrypt.compare(password, user.password, (err, check) => {
 					if(check) {
 						// Devolver los datos del usuario logueado
 						if(params.gethash) {
@@ -138,7 +138,7 @@ function getImageFile(req, res) {
 	var imageFile = req.params.imageFile;
 	var path_file = './uploads/users/'+imageFile;
 
-	fs.exists(path_file, function(exists) {
+	fs.exists(path_file, (exists) => {
 		if(exists) {
 			res.sendFile(path.resolve(path_file));
 		}else {

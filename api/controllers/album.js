@@ -11,7 +11,7 @@ var Song = require('../models/song');
 function getAlbum(req, res) {
 	var albumId = req.params.id;
 
-	Album.findById(albumId).populate({path: 'artist'}).exec((err, album) => {// populate para conseguir todos los datos del artista que ha creado un album
+	Album.findById(albumId).populate({path: 'artist'}).exec((err, album) => {
 		if(err) {
 			res.status(500).send({message: 'Error en la petición'});
 		}else {
@@ -28,10 +28,8 @@ function getAlbums(req, res) {
 	var artistId = req.params.artist;
 
 	if(!artistId) {
-		// Sacar todos los álbus de la bbdd.
 		var find = Album.find({}).sort('title');
 	}else {
-		// Sacar los álbums de un artista concreto, de la bbdd.
 		var find = Album.find({artist: artistId}).sort('year');
 	}
 	find.populate({path: 'artist'}).exec((err, albums) => {
@@ -148,7 +146,7 @@ function getImageFile(req, res) {
 	var imageFile = req.params.imageFile;
 	var path_file = './uploads/albums/'+imageFile;
 
-	fs.exists(path_file, function(exists) {
+	fs.exists(path_file, (exists) => {
 		if(exists) {
 			res.sendFile(path.resolve(path_file));
 		}else {
