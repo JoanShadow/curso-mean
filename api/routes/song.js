@@ -15,6 +15,6 @@ api.get('/songs/:album?', md_auth.ensureAuth, SongController.getSongs);
 api.put('/song/:id', md_auth.ensureAuth, SongController.updateSong);
 api.delete('/song/:id', md_auth.ensureAuth, SongController.deleteSong);
 api.post('/upload-file-song/:id', [md_auth.ensureAuth, md_upload_files], SongController.uploadFile);
-api.get('/get-song-file/:songFile', SongController.getSongFile);
+api.get('/get-file-song/:songFile', SongController.getSongFile);
 
 module.exports = api;
