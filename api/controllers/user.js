@@ -58,12 +58,12 @@ function loginUser(req, res) {
 	var email = params.email;
 	var password = params.password;
 
-	User.findOne({email: email.toLowerCase()}, (err, user) => {
+	User.findOne({email: email.toLowerCase()}, (err, user) => { // find ??
 		if(err) {
 			res.status(500).send({message: 'Error en la petición'});
 		}else {
 			if(!user) {
-				res.status(404).send({message: 'El usuario no existe'});
+				res.status(404).send({message: 'El usuario no ha podido loguearse'});
 			}else {
 				// Comprobar la contraseña
 				bcrypt.compare(password, user.password, (err, check) => {
