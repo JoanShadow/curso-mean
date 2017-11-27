@@ -75,7 +75,7 @@ function loginUser(req, res) {
 								token: jwt.createToken(user)
 							});
 						}else {
-							res.status(200).send({user});
+							res.status(200).send({user}); 
 						}
 					}else {
 						res.status(404).send({message: 'El usuario no ha podido loguearse'});
@@ -90,6 +90,10 @@ function loginUser(req, res) {
 function updateUser(req, res) {
 	var userId = req.params.id;
 	var update = req.body;
+
+	if(userId != req.user._id ) {
+		return res.status(500).send({message: 'No tienes permiso para actualizar este usuario'});
+	}
 
 	User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
 		if(err) {
