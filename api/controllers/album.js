@@ -143,7 +143,7 @@ function uploadImage(req, res) {
 }
 
 function getImageFile(req, res) {
-	var imageFile = req.params.image;//**
+	var imageFile = req.params.imageFile;//**
 	var path_file = './uploads/albums/'+imageFile;
 
 	fs.exists(path_file, (exists) => {
